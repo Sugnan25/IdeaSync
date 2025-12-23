@@ -8,18 +8,9 @@
 <body>
 
 <div class="container">
-    <!-- Left Section: Branding -->
-    <div class="left-section">
-        <h2>Welcome Back!</h2>
-        <p>Connect with brilliant minds and bring your innovative projects to life.</p>
-    </div>
-
-    <!-- Right Section: Login Form -->
     <div class="right-section">
-        <div class="header">
-            <h1>Login</h1>
-            <p class="subtitle">Enter your credentials to access your dashboard.</p>
-        </div>
+        <h1>Login</h1>
+        <p class="subtitle">Welcome back! Please sign in.</p>
 
         <div th:if="${error}" class="message error" th:text="${error}"></div>
 
@@ -30,7 +21,7 @@
         </form>
 
         <p class="footer-text">
-            Don't have an account? <a href="/signup">Sign Up</a>
+            New here? <a href="/signup">Create Account</a>
         </p>
     </div>
 </div>
