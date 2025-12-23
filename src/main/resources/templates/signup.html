@@ -8,9 +8,24 @@
 <body>
 
 <div class="container">
+    <!-- Left Section: Visuals & Info -->
+    <div class="left-section">
+        <h2>Start Your Journey.</h2>
+        <p>Whether you have a spark of an idea or the skills to build one, IdeaSync is your launchpad.</p>
+
+        <ul class="feature-list">
+             <li>Post Unlimited Projects</li>
+             <li>Join Cross-functional Teams</li>
+             <li>Get Mentorship & Support</li>
+        </ul>
+    </div>
+
+    <!-- Right Section: Signup Form -->
     <div class="right-section">
-        <h1>Join Us</h1>
-        <p class="subtitle">Create your account to start innovating.</p>
+        <div class="header">
+            <h1>Create Account</h1>
+            <p class="subtitle">It's free and takes less than a minute.</p>
+        </div>
 
         <div th:if="${error}" class="message error" th:text="${error}"></div>
         <div th:if="${message}" class="message success" th:text="${message}"></div>
@@ -30,7 +45,7 @@
         </form>
 
         <p class="footer-text">
-            Already have an account? <a href="/login">Login</a>
+            Already have an account? <a href="/login">Log In</a>
         </p>
     </div>
 </div>

@@ -8,20 +8,43 @@
 <body>
 
 <div class="container">
+    <!-- Left Section: Visuals & Info -->
+    <div class="left-section">
+        <h2>Turn Ideas into Reality.</h2>
+        <p>Join the community where creators and explorers build the future together.</p>
+
+        <ul class="feature-list">
+             <li>Collaborate on Innovative Projects</li>
+             <li>Find Perfect Teammates</li>
+             <li>Showcase Your Portfolio</li>
+        </ul>
+    </div>
+
+    <!-- Right Section: Login Form -->
     <div class="right-section">
-        <h1>Login</h1>
-        <p class="subtitle">Welcome back! Please sign in.</p>
+        <div class="header">
+            <h1>Welcome Back</h1>
+            <p class="subtitle">Please enter your details to sign in.</p>
+        </div>
 
         <div th:if="${error}" class="message error" th:text="${error}"></div>
 
         <form action="/login" method="post">
-            <input type="email" name="email" placeholder="Email Address" required />
-            <input type="password" name="password" placeholder="Password" required />
+            <div>
+                <label>Email Address</label>
+                <input type="email" name="email" placeholder="Enter your email" required />
+            </div>
+
+            <div>
+                <label>Password</label>
+                <input type="password" name="password" placeholder="Enter your password" required />
+            </div>
+
             <button type="submit">Sign In</button>
         </form>
 
         <p class="footer-text">
-            New here? <a href="/signup">Create Account</a>
+            Don't have an account? <a href="/signup">Sign Up for free</a>
         </p>
     </div>
 </div>
