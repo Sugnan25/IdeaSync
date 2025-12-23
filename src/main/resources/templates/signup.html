@@ -1,32 +1,48 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Create Account</title>
+    <meta charset="UTF-8">
+    <title>Sign Up - IdeaSync</title>
     <link rel="stylesheet" href="/css/interface.css">
 </head>
 <body>
 
-<h2>Create Account</h2>
+<div class="container">
+    <!-- Left Section: Branding -->
+    <div class="left-section">
+        <h2>Join IdeaSync</h2>
+        <p>Start your journey today. Collaborate, innovate, and create something amazing.</p>
+    </div>
 
-<p style="color:red" th:text="${error}"></p>
-<p style="color:green" th:text="${message}"></p>
+    <!-- Right Section: Signup Form -->
+    <div class="right-section">
+        <div class="header">
+            <h1>Create Account</h1>
+            <p class="subtitle">Fill in your details to get started.</p>
+        </div>
 
-<form method="post" action="/signup">
-    <input type="text" name="name" placeholder="Name" required><br><br>
-    <input type="email" name="email" placeholder="Email" required><br><br>
-    <input type="password" name="password" placeholder="Password" required><br><br>
+        <div th:if="${error}" class="message error" th:text="${error}"></div>
+        <div th:if="${message}" class="message success" th:text="${message}"></div>
 
-    <select name="role" required>
-        <option value="">Select Role</option>
-        <option value="PROJECT_CREATOR">Project Creator</option>
-        <option value="PROJECT_EXPLORER">Project Explorer</option>
-    </select><br><br>
+        <form method="post" action="/signup">
+            <input type="text" name="name" placeholder="Full Name" required>
+            <input type="email" name="email" placeholder="Email Address" required>
+            <input type="password" name="password" placeholder="Password" required>
 
-    <button type="submit">Create Account</button>
-</form>
+            <select name="role" required>
+                <option value="" disabled selected>Select Your Role</option>
+                <option value="PROJECT_CREATOR">Project Creator</option>
+                <option value="PROJECT_EXPLORER">Project Explorer</option>
+            </select>
 
-<br>
-<a href="/login">Back to Login</a>
+            <button type="submit">Sign Up</button>
+        </form>
+
+        <p class="footer-text">
+            Already have an account? <a href="/login">Login</a>
+        </p>
+    </div>
+</div>
 
 </body>
 </html>

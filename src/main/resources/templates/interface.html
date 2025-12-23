@@ -8,57 +8,30 @@
 <body>
 
 <div class="container">
-
-    <!-- Left Section -->
+    <!-- Left Section: Branding -->
     <div class="left-section">
-        <div class="overlay"></div>
-        <div class="quote-box">
-            <h2>“Great ideas begin with great collaboration.”</h2>
-            <p>IdeaSync helps students share ideas, find teammates, and work together effortlessly.</p>
-        </div>
+        <h2>Welcome Back!</h2>
+        <p>Connect with brilliant minds and bring your innovative projects to life.</p>
     </div>
 
-    <!-- Right Section -->
+    <!-- Right Section: Login Form -->
     <div class="right-section">
-        <h1>Welcome to IdeaSync</h1>
-        <p class="subtitle">Your space to share projects, discover ideas, and collaborate.</p>
-
-        <!-- ✅ ONLY consolidation -->
-        <form action="/login" method="post">
-
-            <input type="email"
-                   name="email"
-                   placeholder="Enter your email"
-                   required />
-
-            <input type="password"
-                   name="password"
-                   placeholder="Enter your password"
-                   required />
-
-            <button type="submit">Login</button>
-
-            <p class="error" th:text="${error}"></p>
-
-        </form>
-
-        <p>
-            New user?
-            <a href="/signup">Create an account</a>
-        </p>
-
-        <hr class="divider">
-
-        <div class="info-section">
-            <h2>How IdeaSync Works?</h2>
-            <ul>
-                <li>✨ Share your innovative project ideas.</li>
-                <li>🤝 Collaborate with other students or join exciting projects.</li>
-                <li>📂 Explore trending project ideas across all domains.</li>
-                <li>✔ Admin-approved system for maintaining quality.</li>
-            </ul>
+        <div class="header">
+            <h1>Login</h1>
+            <p class="subtitle">Enter your credentials to access your dashboard.</p>
         </div>
 
+        <div th:if="${error}" class="message error" th:text="${error}"></div>
+
+        <form action="/login" method="post">
+            <input type="email" name="email" placeholder="Email Address" required />
+            <input type="password" name="password" placeholder="Password" required />
+            <button type="submit">Sign In</button>
+        </form>
+
+        <p class="footer-text">
+            Don't have an account? <a href="/signup">Sign Up</a>
+        </p>
     </div>
 </div>
 
