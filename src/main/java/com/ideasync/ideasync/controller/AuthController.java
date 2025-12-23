@@ -74,4 +74,36 @@ public class AuthController {
         session.invalidate();
         return "redirect:/login";
     }
+
+    // ✅ SIGNUP PAGE
+    @GetMapping("/signup")
+    public String signupPage() {
+        return "signup";
+    }
+
+    // ✅ SIGNUP LOGIC
+    @PostMapping("/signup")
+    public String signup(@RequestParam String name,
+                         @RequestParam String email,
+                         @RequestParam String password,
+                         @RequestParam String role,
+                         Model model) {
+
+        if (userRepository.findByEmail(email).isPresent()) {
+            model.addAttribute("error", "Email already registered!");
+            return "signup";
+        }
+
+        User newUser = new User();
+        newUser.setName(name);
+        newUser.setEmail(email);
+        newUser.setPassword(password);
+        newUser.setRole(role);
+        newUser.setStatus("PENDING"); // Waits for Admin Approval
+
+        userRepository.save(newUser);
+
+        model.addAttribute("message", "Account created successfully! Wait for Admin Approval.");
+        return "signup"; // Stay on signup page or redirect to login
+    }
 }
