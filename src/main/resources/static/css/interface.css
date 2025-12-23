@@ -1,158 +1,189 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 :root {
-    --primary-color: #4834d4;
-    --text-color: #ffffff;
-    --input-bg: rgba(255, 255, 255, 0.2);
-    --glass-bg: rgba(255, 255, 255, 0.1);
-    --glass-border: rgba(255, 255, 255, 0.2);
+    --primary: #4834d4;
+    --primary-dark: #3c2bb3;
+    --text-dark: #2d3436;
+    --text-light: #636e72;
+    --bg-body: #f0f2f5;
 }
 
 body {
     margin: 0;
     padding: 0;
     font-family: 'Poppins', sans-serif;
-    /* High-quality Tech/Abstract Background */
-    background: url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80') no-repeat center center/cover;
+    background-color: var(--bg-body);
+    /* Subtle geometric pattern for depth */
+    background-image: radial-gradient(#dfe6e9 1px, transparent 1px);
+    background-size: 20px 20px;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+/* Main Card Container - High Elevation */
+.container {
+    width: 1000px;
+    height: 650px;
+    background: #fff;
+    border-radius: 25px;
+    /* Strong shadow for "popping" effect */
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    display: flex;
     overflow: hidden;
 }
 
-/* Glassmorphism Card */
-.container {
-    background: var(--glass-bg);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px); /* Safari support */
-    border: 1px solid var(--glass-border);
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-    border-radius: 20px;
-    padding: 50px;
-    width: 400px; /* Compact width for login */
+/* Left Section: Image & Info */
+.left-section {
+    flex: 1;
+    /* High Quality Image of People/Collaboration */
+    background: linear-gradient(135deg, rgba(72, 52, 212, 0.9), rgba(104, 109, 224, 0.85)),
+                url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+    background-size: cover;
+    background-position: center;
+    padding: 60px;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    color: white;
+    position: relative;
+}
+
+.left-section h2 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.left-section p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    opacity: 0.9;
+    margin-bottom: 40px;
+}
+
+/* Feature List for "More Information" */
+.feature-list {
+    list-style: none;
+    padding: 0;
+}
+
+.feature-list li {
+    margin-bottom: 15px;
+    display: flex;
     align-items: center;
-    color: var(--text-color);
-    text-align: center;
+    font-size: 1rem;
 }
 
-/* Hide the split layout specifically for this design */
-.left-section {
-    display: none;
+.feature-list li::before {
+    content: '✓';
+    background: rgba(255,255,255,0.2);
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    font-weight: bold;
 }
 
+/* Right Section: Form */
 .right-section {
-    width: 100%;
+    flex: 1;
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: #ffffff;
 }
 
-/* Typography */
-h1 {
-    font-size: 2.5rem;
+.header h1 {
+    font-size: 2.2rem;
+    color: var(--text-dark);
     margin-bottom: 10px;
-    font-weight: 600;
+    font-weight: 700;
 }
 
 .subtitle {
-    font-size: 0.9rem;
-    margin-bottom: 30px;
-    opacity: 0.8;
+    color: var(--text-light);
+    margin-bottom: 40px;
 }
 
-/* Form Elements */
 form {
-    width: 100%;
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 
-input, select {
-    width: 100%;
-    padding: 15px;
-    background: var(--input-bg);
-    border: 1px solid var(--glass-border);
-    border-radius: 30px; /* Rounded pill shape */
-    color: white;
-    font-size: 1rem;
-    font-family: 'Poppins', sans-serif;
-    outline: none;
-    box-sizing: border-box;
-    transition: all 0.3s ease;
+label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: -10px;
+    display: block;
 }
 
-input::placeholder {
-    color: rgba(255, 255, 255, 0.7);
+input, select {
+    padding: 15px;
+    border: 2px solid #eee;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.3s;
+    width: 100%;
+    box-sizing: border-box;
+    background: #fafafa;
 }
 
 input:focus, select:focus {
-    background: rgba(255, 255, 255, 0.3);
-    border-color: rgba(255, 255, 255, 0.5);
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    background: #fff;
+    border-color: var(--primary);
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(72, 52, 212, 0.1);
 }
 
-/* Dropdown styling */
-select {
-    color: #333; /* Dark text for dropdown options */
-    cursor: pointer;
-}
-
-/* Button */
 button {
-    width: 100%;
-    padding: 15px;
-    background: linear-gradient(135deg, #6c5ce7, #a29bfe);
-    border: none;
-    border-radius: 30px;
+    padding: 16px;
+    background-color: var(--primary);
     color: white;
+    border: none;
+    border-radius: 12px;
     font-size: 1.1rem;
     font-weight: 600;
     cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: all 0.3s;
     margin-top: 10px;
+    box-shadow: 0 10px 20px rgba(72, 52, 212, 0.2);
 }
 
 button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(108, 92, 231, 0.4);
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 15px 30px rgba(72, 52, 212, 0.3);
 }
 
-/* Footer Links */
 .footer-text {
-    margin-top: 25px;
-    font-size: 0.9rem;
+    text-align: center;
+    margin-top: 30px;
+    color: var(--text-light);
 }
 
 .footer-text a {
-    color: #a29bfe;
+    color: var(--primary);
     text-decoration: none;
     font-weight: 600;
-    transition: color 0.3s;
-}
-
-.footer-text a:hover {
-    color: #ffffff;
-    text-decoration: underline;
 }
 
 /* Messages */
 .message {
-    width: 100%;
-    padding: 10px;
-    border-radius: 10px;
+    padding: 12px;
+    border-radius: 8px;
     margin-bottom: 20px;
     font-size: 0.9rem;
+    text-align: center;
 }
-
-.error {
-    background: rgba(231, 76, 60, 0.4);
-    color: white;
-    border: 1px solid rgba(231, 76, 60, 0.6);
-}
-
-.success {
-    background: rgba(46, 204, 113, 0.4);
-    color: white;
-    border: 1px solid rgba(46, 204, 113, 0.6);
-}
+.error { background: #fee2e2; color: #dc2626; }
+.success { background: #dcfce7; color: #16a34a; }
