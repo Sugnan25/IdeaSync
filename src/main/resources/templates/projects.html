@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Projects | IdeaSync</title>
+    <link rel="stylesheet" th:href="@{/css/superadmin-dashboard.css}">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="logo">IdeaSync</div>
+        <nav class="side-nav">
+            <a href="/superadmin/dashboard"><i data-lucide="layout-dashboard"></i> Dashboards</a>
+            <a href="/superadmin/pending-approvals"><i data-lucide="user-check"></i> Pending Approvals</a>
+            <a href="/superadmin/users"><i data-lucide="users"></i> All Users</a>
+            <a href="/superadmin/projects" class="active"><i data-lucide="folder-kanban"></i> Projects</a>
+            <a href="/logout" class="logout-btn"><i data-lucide="log-out"></i> Logout</a>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <div class="header-section">
+            <h1>Project Management</h1>
+            <p>Viewing all active and closed projects</p>
+        </div>
+
+        <div class="card-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>PROJECT NAME</th>
+                        <th>CREATOR</th>
+                        <th>STATUS</th>
+                        <th>DATE</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="project : ${projects}">
+                        <td th:text="${project.title}" style="font-weight:bold;">Project Title</td>
+                        <td th:text="${project.creator.name}">Creator Name</td>
+                        <td>
+                            <span th:text="${project.status}" 
+                                  th:style="${project.status == 'OPEN' ? 'color: #3ac47d' : 'color: #888'}">
+                            </span>
+                        </td>
+                        <td th:text="${project.createdAt}">Date</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+    <script>lucide.createIcons();</script>
+</body>
+</html>

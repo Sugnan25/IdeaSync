@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Pending Approvals | IdeaSync</title>
+    <link rel="stylesheet" href="/css/dashboard.css">
+</head>
+<body>
+
+<div class="layout">
+
+    <aside class="sidebar">
+        <h2 class="brand">IdeaSync</h2>
+        <a href="/superadmin/dashboard">Dashboard</a>
+        <a class="active" href="/superadmin/pending-approvals">Pending Approvals</a>
+        <a href="/superadmin/users">All Users</a>
+        <a href="/superadmin/projects">Projects</a>
+        <a class="logout" href="/logout">Logout</a>
+    </aside>
+
+    <main class="main">
+        <header class="header">
+            <h1>Pending Approvals</h1>
+            <p>Approve or reject user registrations</p>
+        </header>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="user : ${pendingUsers}">
+                    <td th:text="${user.name}"></td>
+                    <td th:text="${user.email}"></td>
+                    <td th:text="${user.role}"></td>
+                    <td>
+                        <a th:href="@{/superadmin/approve/{id}(id=${user.id})}" class="btn btn-approve">Approve</a>
+                        <a th:href="@{/superadmin/reject/{id}(id=${user.id})}" class="btn btn-reject">Reject</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </main>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Super Admin Dashboard | IdeaSync</title>
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<div class="layout">
+    <aside class="sidebar">
+        <h2 class="brand">IdeaSync</h2>
+        <nav>
+            <a class="active" href="/superadmin/dashboard">Dashboard</a>
+            <a href="/superadmin/pending-approvals">Pending Approvals</a>
+            <a href="/superadmin/users">All Users</a>
+            <a href="/superadmin/projects">Projects</a>
+            <a class="logout" href="/logout">Logout</a>
+        </nav>
+    </aside>
+
+    <main class="main">
+        <header class="header">
+            <h1>Super Admin Dashboard</h1>
+            <p>System overview & control</p>
+        </header>
+
+        <div class="dashboard-wrapper">
+
+            <div class="stats-column">
+                <div class="stat-card">
+                    <span class="label">Total Users</span>
+                    <h2 th:text="${totalUsers}">0</h2>
+                </div>
+
+                <div class="stat-card">
+                    <span class="label">Pending Users</span>
+                    <h2 th:text="${pendingUsers}">0</h2>
+                </div>
+
+                <div class="stat-card">
+                    <span class="label">Rejected Users</span>
+                    <h2 th:text="${rejectedUsers}">0</h2>
+                </div>
+
+                <div class="stat-card">
+                    <span class="label">Total Projects</span>
+                    <h2 th:text="${totalProjects}">0</h2>
+                </div>
+            </div>
+
+            <div class="graph-container">
+                <h3>Platform Activity Trends</h3>
+                <div class="canvas-holder">
+                    <canvas id="userChart"></canvas>
+                </div>
+            </div>
+
+        </div>
+    </main>
+</div>
+
+<script>
+    const ctx = document.getElementById('userChart');
+    if (ctx) {
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],
+                datasets: [{
+                    data: [12,19,15,25,22,30,28],
+                    borderColor: '#4f46e5',
+                    fill: true,
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } }
+            }
+        });
+    }
+</script>
+
+</body>
+</html>

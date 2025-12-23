@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Creator Dashboard | IdeaSync</title>
+    <link rel="stylesheet" href="/css/creator-dashboard.css">
+</head>
+<body>
+
+<div class="layout">
+    <aside class="sidebar">
+        <h2 class="brand">IdeaSync</h2>
+        <nav>
+            <!-- ❌ removed th:classappend (CAUSE OF ERROR) -->
+            <a href="/creator/dashboard" class="active">Dashboard</a>
+            <a href="/creator/projects">My Projects</a>
+            <a href="/creator/create-project">Create Project</a>
+            <a href="/creator/requests">Team Requests</a>
+            <a class="logout" href="/logout">Logout</a>
+        </nav>
+    </aside>
+
+    <main class="main">
+        <header class="header">
+            <h1>Welcome back, Creator!</h1>
+            <p>Explore new ideas and manage your workspace.</p>
+        </header>
+
+        <!-- Suggestions -->
+        <section class="suggestions-section">
+            <div class="section-header">
+                <h2>Inspired by your interests</h2>
+                <span class="view-all">See more</span>
+            </div>
+
+            <div class="suggestions-grid">
+                <div class="suggestion-card">
+                    <div class="card-image iot"></div>
+                    <div class="card-content">
+                        <h4>Smart Irrigation System</h4>
+                        <p>IoT + Sensors based project</p>
+                        <a href="/creator/create-project" class="btn-suggest">Build This</a>
+                    </div>
+                </div>
+
+                <div class="suggestion-card">
+                    <div class="card-image ai"></div>
+                    <div class="card-content">
+                        <h4>AI Attendance System</h4>
+                        <p>Face recognition based system</p>
+                        <a href="/creator/create-project" class="btn-suggest">Build This</a>
+                    </div>
+                </div>
+
+                <div class="suggestion-card">
+                    <div class="card-image solar"></div>
+                    <div class="card-content">
+                        <h4>Solar Energy Monitor</h4>
+                        <p>Renewable energy project</p>
+                        <a href="/creator/create-project" class="btn-suggest">Build This</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats -->
+        <div class="stats-grid">
+            <div class="card">
+                <div class="icon-circle purple">📂</div>
+                <h3>Total Projects</h3>
+                <p class="stat-val" th:text="${totalProjects}">0</p>
+            </div>
+
+            <div class="card">
+                <div class="icon-circle green">🔓</div>
+                <h3>Open Projects</h3>
+                <p class="stat-val" th:text="${openProjects}">0</p>
+            </div>
+
+            <div class="card">
+                <div class="icon-circle red">🔒</div>
+                <h3>Closed Projects</h3>
+                <p class="stat-val" th:text="${closedProjects}">0</p>
+            </div>
+
+            <div class="card">
+                <div class="icon-circle blue">👥</div>
+                <h3>Team Requests</h3>
+                <p class="stat-val" th:text="${teamRequests}">0</p>
+            </div>
+        </div>
+    </main>
+</div>
+
+</body>
+</html>

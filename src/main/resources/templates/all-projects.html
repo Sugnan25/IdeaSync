@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>All Projects | IdeaSync</title>
+    <link rel="stylesheet" href="/css/dashboard.css">
+</head>
+<body>
+
+<div class="layout">
+
+    <aside class="sidebar">
+        <h2 class="brand">IdeaSync</h2>
+        <a href="/superadmin/dashboard">Dashboard</a>
+        <a href="/superadmin/pending-approvals">Pending Approvals</a>
+        <a href="/superadmin/users">All Users</a>
+        <a class="active" href="/superadmin/projects">Projects</a>
+        <a class="logout" href="/logout">Logout</a>
+    </aside>
+
+    <main class="main">
+        <header class="header">
+            <h1>All Projects</h1>
+            <p>Projects created on the platform</p>
+        </header>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Project Name</th>
+                    <th>Creator</th>
+                    <th>Status</th>
+                    <th>Team Size</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="project : ${projects}">
+                    <td th:text="${project.title}"></td>
+                    <td th:text="${project.creator.name}"></td>
+                    <td th:text="${project.status}"
+                        th:classappend="${project.status == 'OPEN'} ? 'approved' : 'rejected'">
+                    </td>
+                    <td th:text="${project.teamSize}"></td>
+                </tr>
+            </tbody>
+        </table>
+
+    </main>
+</div>
+
+</body>
+</html>

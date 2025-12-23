@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Team Requests</title>
+    <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body>
+
+<div class="admin-layout">
+
+    <div class="sidebar">
+        <h2>IdeaSync</h2>
+        <a href="/creator/dashboard">Dashboard</a>
+        <a href="/creator/projects">My Projects</a>
+        <a href="/creator/requests" class="active">Team Requests</a>
+        <a href="/logout" class="logout-btn">Logout</a>
+    </div>
+
+    <div class="main-content">
+        <h1>Team Join Requests</h1>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Explorer Name</th>
+                    <th>Project</th>
+                    <th>Message</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+
+<tr th:if="${#lists.isEmpty(requests)}">
+    <td colspan="4" style="text-align:center;">No team requests yet</td>
+</tr>
+
+<tr th:each="req : ${requests}">
+    <td th:text="${req.explorerName}"></td>
+    <td th:text="${req.projectTitle}"></td>
+    <td th:text="${req.message}"></td>
+    <td>
+        <button class="btn-approve">Approve</button>
+        <button class="btn-reject">Reject</button>
+    </td>
+</tr>
+
+</tbody>
+
+        </table>
+
+    </div>
+</div>
+
+</body>
+</html>

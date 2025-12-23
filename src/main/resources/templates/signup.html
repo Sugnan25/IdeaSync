@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Account</title>
+</head>
+<body>
+
+<h2>Create Account</h2>
+
+<p style="color:red" th:text="${error}"></p>
+<p style="color:green" th:text="${message}"></p>
+
+<form method="post" action="/signup">
+    <input type="text" name="name" placeholder="Name" required><br><br>
+    <input type="email" name="email" placeholder="Email" required><br><br>
+    <input type="password" name="password" placeholder="Password" required><br><br>
+
+    <select name="role" required>
+        <option value="">Select Role</option>
+        <option value="PROJECT_CREATOR">Project Creator</option>
+        <option value="PROJECT_EXPLORER">Project Explorer</option>
+    </select><br><br>
+
+    <button type="submit">Create Account</button>
+</form>
+
+<br>
+<a href="/login">Back to Login</a>
+
+</body>
+</html>

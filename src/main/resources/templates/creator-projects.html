@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>My Projects</title>
+    <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body>
+
+<div class="admin-layout">
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+        <h2>IdeaSync</h2>
+        <a href="/creator/dashboard">Dashboard</a>
+        <a href="/creator/projects" class="active">My Projects</a>
+        <a href="/creator/create-project">Create Project</a>
+        <a href="/creator/requests">Team Requests</a>
+        <a href="/logout" class="logout-btn">Logout</a>
+    </div>
+
+    <!-- MAIN -->
+    <div class="main-content">
+        <h1>My Projects</h1>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Project Name</th>
+                    <th>Status</th>
+                    <th>Created On</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="project : ${projects}">
+                    <td th:text="${project.title}">Project Title</td>
+                    <td th:text="${project.status}">OPEN</td>
+                    <td th:text="${project.createdAt}">2025-01-01</td>
+                    <td>
+                        <a th:href="@{/creator/projects/view/{id}(id=${project.id})}">View</a> |
+                        <a th:href="@{/creator/projects/delete/{id}(id=${project.id})}"
+                           onclick="return confirm('Delete project?')">Delete</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+</body>
+</html>

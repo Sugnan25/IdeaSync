@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login - IdeaSync</title>
+    <link rel="stylesheet" href="/css/interface.css">
+</head>
+<body>
+
+<div class="container">
+
+    <!-- Left Section -->
+    <div class="left-section">
+        <div class="overlay"></div>
+        <div class="quote-box">
+            <h2>“Great ideas begin with great collaboration.”</h2>
+            <p>IdeaSync helps students share ideas, find teammates, and work together effortlessly.</p>
+        </div>
+    </div>
+
+    <!-- Right Section -->
+    <div class="right-section">
+        <h1>Welcome to IdeaSync</h1>
+        <p class="subtitle">Your space to share projects, discover ideas, and collaborate.</p>
+
+        <!-- ✅ ONLY consolidation -->
+        <form action="/login" method="post">
+
+            <input type="email"
+                   name="email"
+                   placeholder="Enter your email"
+                   required />
+
+            <input type="password"
+                   name="password"
+                   placeholder="Enter your password"
+                   required />
+
+            <button type="submit">Login</button>
+
+            <p class="error" th:text="${error}"></p>
+
+        </form>
+
+        <p>
+            New user?
+            <a href="/signup">Create an account</a>
+        </p>
+
+        <hr class="divider">
+
+        <div class="info-section">
+            <h2>How IdeaSync Works?</h2>
+            <ul>
+                <li>✨ Share your innovative project ideas.</li>
+                <li>🤝 Collaborate with other students or join exciting projects.</li>
+                <li>📂 Explore trending project ideas across all domains.</li>
+                <li>✔ Admin-approved system for maintaining quality.</li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

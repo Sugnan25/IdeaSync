@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>All Users | IdeaSync</title>
+    <link rel="stylesheet" href="/css/dashboard.css">
+</head>
+<body>
+
+<div class="layout">
+
+    <aside class="sidebar">
+        <h2 class="brand">IdeaSync</h2>
+        <a href="/superadmin/dashboard">Dashboard</a>
+        <a href="/superadmin/pending-approvals">Pending Approvals</a>
+        <a class="active" href="/superadmin/users">All Users</a>
+        <a href="/superadmin/projects">Projects</a>
+        <a class="logout" href="/logout">Logout</a>
+    </aside>
+
+    <main class="main">
+        <header class="header">
+            <h1>All Users</h1>
+            <p>System registered users</p>
+        </header>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="user : ${users}">
+                    <td th:text="${user.id}"></td>
+                    <td th:text="${user.name}"></td>
+                    <td th:text="${user.email}"></td>
+                    <td th:text="${user.role}"></td>
+                    <td th:text="${user.status}"
+                        th:classappend="${user.status == 'APPROVED'} ? 'approved' :
+                                        (${user.status == 'PENDING'} ? 'pending' : 'rejected')">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </main>
+</div>
+
+</body>
+</html>
