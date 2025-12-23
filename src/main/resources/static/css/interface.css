@@ -122,7 +122,7 @@ label {
     font-size: 0.9rem;
     font-weight: 600;
     color: var(--text-dark);
-    margin-bottom: -10px;
+    margin-bottom: 8px;
     display: block;
 }
 
@@ -136,6 +136,11 @@ input, select {
     width: 100%;
     box-sizing: border-box;
     background: #fafafa;
+    color: var(--text-dark);
+}
+
+input::placeholder, select::placeholder {
+    color: #a0a0a0;
 }
 
 input:focus, select:focus {
