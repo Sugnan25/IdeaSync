@@ -16,17 +16,17 @@ public class DataSeeder implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        // Seed Super Admin
-        if (userRepository.findByEmail("super@ideasync.com").isEmpty()) {
-            User superAdmin = new User();
-            superAdmin.setName("Super Admin");
-            superAdmin.setEmail("super@ideasync.com");
-            superAdmin.setPassword("Sugnan@#25");
-            superAdmin.setRole("SUPER_ADMIN");
-            superAdmin.setStatus("APPROVED"); // Auto-approved
+        // Seed OR Update Super Admin
+        User superAdmin = userRepository.findByEmail("super@ideasync.com")
+                .orElse(new User());
 
-            userRepository.save(superAdmin);
-            System.out.println("✅ Super Admin user created: super@ideasync.com");
-        }
+        superAdmin.setName("Super Admin");
+        superAdmin.setEmail("super@ideasync.com");
+        superAdmin.setPassword("Sugnan@#25"); // Force reset password
+        superAdmin.setRole("SUPER_ADMIN");
+        superAdmin.setStatus("APPROVED"); // Ensure APPROVED status
+
+        userRepository.save(superAdmin);
+        System.out.println("✅ Super Admin user seeded/updated: super@ideasync.com");
     }
 }
