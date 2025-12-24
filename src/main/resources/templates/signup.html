@@ -32,15 +32,29 @@
         <div th:if="${message}" class="message success" th:text="${message}"></div>
 
         <form method="post" action="/signup">
-            <input type="text" name="name" placeholder="Full Name" required>
-            <input type="email" name="email" placeholder="Email Address" required>
-            <input type="password" name="password" placeholder="Password" required>
+            <div class="input-group">
+                <label for="name">Full Name</label>
+                <input type="text" name="name" id="name" placeholder="Enter your full name" required>
+            </div>
 
-            <select name="role" required>
-                <option value="" disabled selected>Select Your Role</option>
-                <option value="PROJECT_CREATOR">Project Creator</option>
-                <option value="PROJECT_EXPLORER">Project Explorer</option>
-            </select>
+            <div class="input-group">
+                <label for="email">Email Address</label>
+                <input type="email" name="email" id="email" placeholder="Enter your email" required>
+            </div>
+
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" placeholder="Create a password" required>
+            </div>
+
+            <div class="input-group">
+                <label for="role">Select Your Role</label>
+                <select name="role" id="role" required>
+                    <option value="" disabled selected>Select your role</option>
+                    <option value="PROJECT_CREATOR">Project Creator</option>
+                    <option value="PROJECT_EXPLORER">Project Explorer</option>
+                </select>
+            </div>
 
             <button type="submit">Sign Up</button>
         </form>
