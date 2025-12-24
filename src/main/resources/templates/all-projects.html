@@ -3,6 +3,7 @@
 <head>
     <title>All Projects | IdeaSync</title>
     <link rel="stylesheet" href="/css/dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -10,18 +11,23 @@
 
     <aside class="sidebar">
         <h2 class="brand">IdeaSync</h2>
-        <a href="/superadmin/dashboard">Dashboard</a>
-        <a href="/superadmin/pending-approvals">Pending Approvals</a>
-        <a href="/superadmin/users">All Users</a>
-        <a class="active" href="/superadmin/projects">Projects</a>
-        <a class="logout" href="/logout">Logout</a>
+        <nav>
+            <a href="/superadmin/dashboard">Dashboard</a>
+            <a href="/superadmin/pending-approvals">Pending Approvals</a>
+            <a href="/superadmin/users">All Users</a>
+            <a class="active" href="/superadmin/projects">Projects</a>
+            <a class="logout" href="/logout">Logout</a>
+        </nav>
     </aside>
 
     <main class="main">
-        <header class="header">
-            <h1>All Projects</h1>
-            <p>Projects created on the platform</p>
-        </header>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+            <header class="header" style="margin-bottom: 0;">
+                <h1>All Projects</h1>
+                <p>Manage projects and listings</p>
+            </header>
+            <a href="/superadmin/create-project" class="btn-primary">+ Create Project</a>
+        </div>
 
         <table>
             <thead>
@@ -30,16 +36,25 @@
                     <th>Creator</th>
                     <th>Status</th>
                     <th>Team Size</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
                 <tr th:each="project : ${projects}">
                     <td th:text="${project.title}"></td>
-                    <td th:text="${project.creator.name}"></td>
-                    <td th:text="${project.status}"
-                        th:classappend="${project.status == 'OPEN'} ? 'approved' : 'rejected'">
+                    <td th:text="${project.creator != null ? project.creator.name : 'System'}"></td>
+                    <td>
+                        <span th:text="${project.status}"
+                              th:classappend="${project.status == 'OPEN'} ? 'approved' : 'rejected'">
+                        </span>
                     </td>
                     <td th:text="${project.teamSize}"></td>
+                    <td>
+                        <form th:action="@{/superadmin/projects/delete/{id}(id=${project.id})}" method="post"
+                              onsubmit="return confirm('Are you sure you want to delete this project?');">
+                            <button type="submit" class="btn-delete">Delete</button>
+                        </form>
+                    </td>
                 </tr>
             </tbody>
         </table>

@@ -12,11 +12,11 @@
     <aside class="sidebar">
         <h2 class="brand">IdeaSync</h2>
         <nav>
-            <a href="/creator/dashboard">Dashboard</a>
-            <a href="/creator/projects">My Projects</a>
-            <a href="/creator/create-project" class="active">Create Project</a>
-            <a href="/creator/requests">Team Requests</a>
-            <a href="/logout" class="logout-btn logout">Logout</a>
+            <a href="/superadmin/dashboard">Dashboard</a>
+            <a href="/superadmin/pending-approvals">Pending Approvals</a>
+            <a href="/superadmin/users">All Users</a>
+            <a class="active" href="/superadmin/projects">Projects</a>
+            <a class="logout" href="/logout">Logout</a>
         </nav>
     </aside>
 
@@ -26,7 +26,7 @@
             <p>Launch a new initiative on IdeaSync</p>
         </header>
 
-        <form action="/creator/create-project" method="post" enctype="multipart/form-data" class="form-card">
+        <form action="/superadmin/create-project" method="post" enctype="multipart/form-data" class="form-card">
 
             <div class="form-grid">
                 <!-- Left Column -->
