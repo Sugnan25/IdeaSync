@@ -41,8 +41,29 @@ public class Superadmincontroller {
     }
 
     @GetMapping("/pending-approvals")
-    public String pendingApprovals() {
+    public String pendingApprovals(Model model) {
+        model.addAttribute("pendingUsers", userRepository.findByStatus("PENDING"));
         return "pending-approvals";
+    }
+
+    @GetMapping("/approve/{id}")
+    public String approveUser(@PathVariable Long id) {
+        User user = userRepository.findById(id).orElse(null);
+        if (user != null) {
+            user.setStatus("APPROVED");
+            userRepository.save(user);
+        }
+        return "redirect:/superadmin/pending-approvals";
+    }
+
+    @GetMapping("/reject/{id}")
+    public String rejectUser(@PathVariable Long id) {
+        User user = userRepository.findById(id).orElse(null);
+        if (user != null) {
+            user.setStatus("REJECTED");
+            userRepository.save(user);
+        }
+        return "redirect:/superadmin/pending-approvals";
     }
 
     @GetMapping("/users")
