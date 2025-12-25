@@ -1,52 +1,74 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - IdeaSync</title>
     <link rel="stylesheet" href="/css/interface.css">
 </head>
 <body>
 
-<div class="container">
-    <!-- Left Section: Visuals & Info -->
-    <div class="left-section">
-        <h2>Turn Ideas into Reality with IdeaSync.</h2>
-        <p>Join the premier community where creators, developers, and visionaries unite. Whether you're looking for a co-founder, a developer, or a creative partner, IdeaSync provides the platform to build the future together.</p>
-        <p>Experience seamless collaboration, project tracking, and a network of talented individuals ready to work.</p>
+<div class="login-container">
+    <!-- Left Section: Visuals & Branding -->
+    <div class="brand-section">
+        <div class="brand-content">
+            <h1 class="brand-title">Turn Ideas into Reality.</h1>
+            <p class="brand-subtitle">Join the premier community where creators, developers, and visionaries unite to build the future together.</p>
 
-        <ul class="feature-list">
-             <li>Collaborate on Innovative Projects from scratch</li>
-             <li>Find Perfect Teammates based on skills</li>
-             <li>Showcase Your Portfolio to the world</li>
-        </ul>
+            <ul class="features">
+                 <li>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    Collaborate on Innovative Projects
+                 </li>
+                 <li>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    Find Perfect Teammates
+                 </li>
+                 <li>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    Showcase Your Portfolio
+                 </li>
+            </ul>
+        </div>
     </div>
 
     <!-- Right Section: Login Form -->
-    <div class="right-section">
-        <div class="header">
-            <h1>Welcome Back</h1>
-            <p class="subtitle">Please enter your details to sign in.</p>
+    <div class="form-section">
+        <div class="form-wrapper">
+            <div class="form-header">
+                <h2>Welcome Back</h2>
+                <p>Please enter your details to sign in.</p>
+            </div>
+
+            <!-- Error Message Block -->
+            <div th:if="${error}" class="alert alert-error">
+                <span th:text="${error}">Invalid credentials</span>
+            </div>
+
+            <form action="/login" method="post">
+                <div class="form-group">
+                    <label for="email" class="form-label">Email Address</label>
+                    <input type="email" name="email" id="email" class="form-input" placeholder="name@example.com" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" name="password" id="password" class="form-input" placeholder="Enter your password" required />
+                </div>
+
+                <button type="submit" class="btn-primary">Sign In</button>
+            </form>
+
+            <div class="form-footer">
+                Don't have an account? <a href="/signup">Sign Up for free</a>
+            </div>
         </div>
-
-        <div th:if="${error}" class="message error" th:text="${error}"></div>
-
-        <form action="/login" method="post">
-            <div class="input-group">
-                <label for="email">Email Address</label>
-                <input type="email" name="email" id="email" placeholder="Enter your email" required />
-            </div>
-
-            <div class="input-group">
-                <label for="password">Password</label>
-                <input type="password" name="password" id="password" placeholder="Enter your password" required />
-            </div>
-
-            <button type="submit">Sign In</button>
-        </form>
-
-        <p class="footer-text">
-            Don't have an account? <a href="/signup">Sign Up for free</a>
-        </p>
     </div>
 </div>
 
