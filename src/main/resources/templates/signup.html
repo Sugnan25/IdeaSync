@@ -1,67 +1,89 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up - IdeaSync</title>
     <link rel="stylesheet" href="/css/interface.css">
 </head>
 <body>
 
-<div class="container">
-    <!-- Left Section: Visuals & Info -->
-    <div class="left-section">
-        <h2>Start Your Innovation Journey.</h2>
-        <p>Don't let your skills or ideas go to waste. IdeaSync is the launchpad for the next big thing, connecting you with the resources you need to succeed.</p>
-        <p>Sign up today to access exclusive projects, connect with industry leaders, and start building your legacy.</p>
+<div class="login-container">
+    <!-- Left Section: Visuals & Branding -->
+    <div class="brand-section">
+        <div class="brand-content">
+            <h1 class="brand-title">Start Your Innovation Journey.</h1>
+            <p class="brand-subtitle">IdeaSync is the launchpad for the next big thing. Connect with resources, experts, and teams to build your legacy.</p>
 
-        <ul class="feature-list">
-             <li>Post Unlimited Projects and gather feedback</li>
-             <li>Join Cross-functional Teams instantly</li>
-             <li>Get Mentorship & Support from experts</li>
-        </ul>
+            <ul class="features">
+                 <li>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    Post Unlimited Projects
+                 </li>
+                 <li>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    Join Cross-functional Teams
+                 </li>
+                 <li>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    Get Mentorship & Support
+                 </li>
+            </ul>
+        </div>
     </div>
 
     <!-- Right Section: Signup Form -->
-    <div class="right-section">
-        <div class="header">
-            <h1>Create Account</h1>
-            <p class="subtitle">It's free and takes less than a minute.</p>
+    <div class="form-section">
+        <div class="form-wrapper">
+            <div class="form-header">
+                <h2>Create Account</h2>
+                <p>It's free and takes less than a minute.</p>
+            </div>
+
+            <div th:if="${error}" class="alert alert-error" th:text="${error}"></div>
+            <div th:if="${message}" class="alert alert-success" th:text="${message}" style="color: #047857; background-color: #d1fae5;"></div>
+
+            <form method="post" action="/signup">
+                <div class="form-group">
+                    <label for="name" class="form-label">Full Name</label>
+                    <input type="text" name="name" id="name" class="form-input" placeholder="Enter your full name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email" class="form-label">Email Address</label>
+                    <input type="email" name="email" id="email" class="form-input" placeholder="name@example.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" name="password" id="password" class="form-input" placeholder="Create a password" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="role" class="form-label">Select Your Role</label>
+                    <div class="select-wrapper" style="position: relative;">
+                        <select name="role" id="role" class="form-input" style="appearance: none; background-color: white;" required>
+                            <option value="" disabled selected>Select your role</option>
+                            <option value="PROJECT_CREATOR">Project Creator</option>
+                            <option value="PROJECT_EXPLORER">Project Explorer</option>
+                        </select>
+                        <svg style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); width: 16px; height: 16px; pointer-events: none; color: #6b7280;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-primary">Sign Up</button>
+            </form>
+
+            <div class="form-footer">
+                Already have an account? <a href="/login">Sign In</a>
+            </div>
         </div>
-
-        <div th:if="${error}" class="message error" th:text="${error}"></div>
-        <div th:if="${message}" class="message success" th:text="${message}"></div>
-
-        <form method="post" action="/signup">
-            <div class="input-group">
-                <label for="name">Full Name</label>
-                <input type="text" name="name" id="name" placeholder="Enter your full name" required>
-            </div>
-
-            <div class="input-group">
-                <label for="email">Email Address</label>
-                <input type="email" name="email" id="email" placeholder="Enter your email" required>
-            </div>
-
-            <div class="input-group">
-                <label for="password">Password</label>
-                <input type="password" name="password" id="password" placeholder="Create a password" required>
-            </div>
-
-            <div class="input-group">
-                <label for="role">Select Your Role</label>
-                <select name="role" id="role" required>
-                    <option value="" disabled selected>Select your role</option>
-                    <option value="PROJECT_CREATOR">Project Creator</option>
-                    <option value="PROJECT_EXPLORER">Project Explorer</option>
-                </select>
-            </div>
-
-            <button type="submit">Sign Up</button>
-        </form>
-
-        <p class="footer-text">
-            Already have an account? <a href="/login">Log In</a>
-        </p>
     </div>
 </div>
 
