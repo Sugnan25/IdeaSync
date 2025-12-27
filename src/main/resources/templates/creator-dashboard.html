@@ -32,7 +32,8 @@
         <section class="suggestions-section">
             <div class="section-header">
                 <h2>Inspired by your interests</h2>
-                <span class="view-all">See more</span>
+                <!-- Updated See More with interaction -->
+                <span class="view-all" onclick="openSelectionModal()">See more</span>
             </div>
 
             <div class="suggestions-grid">
@@ -41,7 +42,8 @@
                     <div class="card-content">
                         <h4>Smart Irrigation System</h4>
                         <p>IoT + Sensors based project. Build a smart system to monitor soil moisture and automate watering.</p>
-                        <a href="/creator/create-project" class="btn-suggest">Build This Project</a>
+                        <!-- Trigger Modal JS -->
+                        <button class="btn-suggest" onclick="openMainModal('irrigation')">Learn More</button>
                     </div>
                 </div>
 
@@ -50,7 +52,8 @@
                     <div class="card-content">
                         <h4>AI Attendance System</h4>
                         <p>Face recognition based system. Automate attendance tracking in schools or offices using computer vision.</p>
-                        <a href="/creator/create-project" class="btn-suggest">Build This Project</a>
+                        <!-- Trigger Modal JS -->
+                        <button class="btn-suggest" onclick="openMainModal('attendance')">Learn More</button>
                     </div>
                 </div>
 
@@ -59,7 +62,8 @@
                     <div class="card-content">
                         <h4>Solar Energy Monitor</h4>
                         <p>Renewable energy project. Track solar panel efficiency and power generation in real-time.</p>
-                        <a href="/creator/create-project" class="btn-suggest">Build This Project</a>
+                        <!-- Trigger Modal JS -->
+                        <button class="btn-suggest" onclick="openMainModal('solar')">Learn More</button>
                     </div>
                 </div>
             </div>
@@ -101,6 +105,56 @@
         </div>
     </main>
 </div>
+
+<!-- Main Card Modal (Single Project) -->
+<div id="mainModal" class="modal-overlay">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 id="mainModalTitle">Project Title</h2>
+            <button class="close-btn" onclick="closeModal('mainModal')">&times;</button>
+        </div>
+        <div class="video-wrapper">
+            <iframe id="mainModalVideo" src="" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <div class="suggestions-list">
+            <h4>Suggestions for implementation:</h4>
+            <ul id="mainModalSuggestions">
+                <!-- Suggestions injected by JS -->
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Selection Modal (Technical vs Non-Technical) -->
+<div id="selectionModal" class="modal-overlay">
+    <div class="modal-content selection-modal-content">
+        <div class="modal-header">
+            <h2>Explore More Ideas</h2>
+            <button class="close-btn" onclick="closeModal('selectionModal')">&times;</button>
+        </div>
+        <p>Select a category to view curated project ideas and video tutorials.</p>
+        <div class="selection-buttons">
+            <button class="btn-select" onclick="selectCategory('technical')">Technical</button>
+            <button class="btn-select" onclick="selectCategory('non-technical')">Non-Technical</button>
+        </div>
+    </div>
+</div>
+
+<!-- Grid Modal (500+ Videos) -->
+<div id="gridModal" class="modal-overlay">
+    <div class="modal-content grid-modal-content">
+        <div class="modal-header">
+            <h2 id="gridModalTitle">Project Videos</h2>
+            <button class="close-btn" onclick="closeModal('gridModal')">&times;</button>
+        </div>
+        <div id="videoGrid" class="video-grid-container">
+            <!-- Grid items injected by JS -->
+        </div>
+    </div>
+</div>
+
+<!-- Interaction Logic -->
+<script src="/js/dashboard-interactions.js"></script>
 
 </body>
 </html>
