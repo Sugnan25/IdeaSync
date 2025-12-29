@@ -163,9 +163,9 @@ body {
 }
 
 /* Gradients/Images for cards */
-.card-image.iot { background: linear-gradient(135deg, #3b82f6, #8b5cf6); }
-.card-image.ai { background: linear-gradient(135deg, #ec4899, #f43f5e); }
-.card-image.solar { background: linear-gradient(135deg, #f59e0b, #d97706); }
+.card-image.mvp { background: linear-gradient(135deg, #4f46e5, #9333ea); }
+.card-image.collaboration { background: linear-gradient(135deg, #059669, #10b981); }
+.card-image.pitch { background: linear-gradient(135deg, #ea580c, #f59e0b); }
 
 .card-content {
     padding: 1.5rem;
