@@ -1,62 +1,144 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Explorer Dashboard</title>
-    <link rel="stylesheet" href="/css/dashboard.css">
+    <meta charset="UTF-8">
+    <title>Explorer Dashboard | IdeaSync</title>
+    <link rel="stylesheet" href="/css/explorer-dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
 <div class="layout">
-
-    <!-- SIDEBAR -->
+    <!-- Sidebar -->
     <aside class="sidebar">
         <h2 class="brand">IdeaSync</h2>
-        <a class="active" href="/explorer/dashboard">Dashboard</a>
-        <a href="#">Explore Projects</a>
-        <a href="#">Joined Projects</a>
-        <a class="logout" href="/logout">Logout</a>
+        <nav>
+            <a href="/explorer/dashboard" class="active">Dashboard</a>
+            <a href="/explorer/projects">Explore Projects</a>
+            <a href="/explorer/applications">My Applications</a> <!-- Placeholder link -->
+            <a class="logout" href="/logout">Logout</a>
+        </nav>
     </aside>
 
-    <!-- MAIN -->
     <main class="main">
-        <h1>Explorer Dashboard</h1>
-        <p>Discover and join projects</p>
-        <h2>Recommended Projects</h2>
+        <header class="header">
+            <h1>Welcome, Explorer!</h1>
+            <p>Discover innovative projects and join a team.</p>
+        </header>
 
-<div class="suggestions">
-    <div class="suggestion-card">
-        <h4>Autonomous Line Follower Robot</h4>
-        <p>Robotics & Embedded Systems</p>
-        <a href="/explorer/project/1">View Project</a>
-    </div>
+        <!-- Suggestions Section -->
+        <section class="suggestions-section">
+            <div class="section-header">
+                <h2>Recommended for you</h2>
+                <span class="view-all" onclick="openSelectionModal()">See more</span>
+            </div>
 
-    <div class="suggestion-card">
-        <h4>Smart Home Automation</h4>
-        <p>IoT based system</p>
-        <a href="/explorer/project/2">View Project</a>
-    </div>
+            <div class="suggestions-grid">
+                <div class="suggestion-card">
+                    <div class="card-image ai"></div>
+                    <div class="card-content">
+                        <h4>AI Health Assistant</h4>
+                        <p>A machine learning powered application that provides personalized health tips.</p>
+                        <button class="btn-suggest" onclick="openProjectModal('ai')">View Details</button>
+                    </div>
+                </div>
 
-    <div class="suggestion-card">
-        <h4>EV Battery Monitoring</h4>
-        <p>Electrical & Energy domain</p>
-        <a href="/explorer/project/3">View Project</a>
-    </div>
-</div>
+                <div class="suggestion-card">
+                    <div class="card-image fintech"></div>
+                    <div class="card-content">
+                        <h4>DeFi Crypto Exchange</h4>
+                        <p>Decentralized finance platform allowing users to swap tokens with low fees.</p>
+                        <button class="btn-suggest" onclick="openProjectModal('fintech')">View Details</button>
+                    </div>
+                </div>
 
-        <div class="cards">
+                <div class="suggestion-card">
+                    <div class="card-image sustainability"></div>
+                    <div class="card-content">
+                        <h4>Urban Vertical Farming</h4>
+                        <p>IoT based system to monitor and control hydroponic farms in urban environments.</p>
+                        <button class="btn-suggest" onclick="openProjectModal('sustainability')">View Details</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <div class="stats-grid">
             <div class="card">
-                <h3>Available Projects</h3>
-                <p>—</p>
+                <div class="icon-circle purple">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+                </div>
+                <h3>Projects Viewed</h3>
+                <p class="stat-val">12</p>
             </div>
 
             <div class="card">
-                <h3>Joined Projects</h3>
-                <p>—</p>
+                <div class="icon-circle green">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><polyline points="17 11 19 13 23 9"></polyline></svg>
+                </div>
+                <h3>Applications Sent</h3>
+                <p class="stat-val">3</p>
+            </div>
+
+            <div class="card">
+                <div class="icon-circle blue">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                </div>
+                <h3>Teams Joined</h3>
+                <p class="stat-val">1</p>
             </div>
         </div>
     </main>
-
 </div>
+
+<!-- Project Details Modal -->
+<div id="projectModal" class="modal-overlay">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 id="projectModalTitle">Project Title</h2>
+            <button class="close-btn" onclick="closeModal('projectModal')">&times;</button>
+        </div>
+        <div class="project-details">
+            <p id="projectModalDesc">Description goes here...</p>
+            <h4>Tech Stack:</h4>
+            <div id="projectModalTech" class="tech-stack">
+                <!-- Tech badges injected by JS -->
+            </div>
+        </div>
+        <button id="modalJoinBtn" class="btn-suggest" onclick="requestJoin()">Request to Join</button>
+    </div>
+</div>
+
+<!-- Selection Modal (Type of Project) -->
+<div id="selectionModal" class="modal-overlay">
+    <div class="modal-content selection-modal-content">
+        <div class="modal-header">
+            <h2>Explore More Projects</h2>
+            <button class="close-btn" onclick="closeModal('selectionModal')">&times;</button>
+        </div>
+        <p>What kind of projects are you interested in?</p>
+        <div class="selection-buttons">
+            <button class="btn-select" onclick="selectCategory('software')">Software & Web</button>
+            <button class="btn-select" onclick="selectCategory('hardware')">Hardware & IoT</button>
+        </div>
+    </div>
+</div>
+
+<!-- Grid Modal (500+ Projects) -->
+<div id="gridModal" class="modal-overlay">
+    <div class="modal-content grid-modal-content">
+        <div class="modal-header">
+            <h2 id="gridModalTitle">Projects</h2>
+            <button class="close-btn" onclick="closeModal('gridModal')">&times;</button>
+        </div>
+        <div id="projectGrid" class="project-grid-container">
+            <!-- Grid items injected by JS -->
+        </div>
+    </div>
+</div>
+
+<script src="/js/explorer-interactions.js"></script>
 
 </body>
 </html>
