@@ -1,33 +1,33 @@
 // Data for the 3 main cards
 const mainCardData = {
-    "irrigation": {
-        title: "Smart Irrigation System",
-        videoUrl: "https://www.youtube.com/embed/5pMkRy7s_vY", // Example IoT video
+    "mvp": {
+        title: "From Idea to MVP",
+        videoUrl: "https://www.youtube.com/embed/YwEEV0wHnaA",
         suggestions: [
-            "Use Arduino Uno or ESP8266 for connectivity.",
-            "Calibrate your soil moisture sensor before deployment.",
-            "Consider adding a solar panel for a self-sustaining system.",
-            "Implement a mobile app dashboard using Blynk or Firebase."
+            "Define your core value proposition before coding.",
+            "Focus on a single key feature for the first release.",
+            "Use rapid prototyping tools like Figma or wireframes.",
+            "Gather user feedback immediately after launch."
         ]
     },
-    "attendance": {
-        title: "AI Attendance System",
-        videoUrl: "https://www.youtube.com/embed/sz25xxF_AVE", // Example OpenCV video
+    "collaboration": {
+        title: "Mastering Team Collaboration",
+        videoUrl: "https://www.youtube.com/embed/jhtbhSpV5YA",
         suggestions: [
-            "Use OpenCV and Python for face detection.",
-            "Train your model with at least 50 images per person.",
-            "Ensure good lighting conditions for better accuracy.",
-            "Store attendance logs in a SQLite or MySQL database."
+            "Establish a clear Git workflow (e.g., Feature Branching).",
+            "Use Pull Requests to review code before merging.",
+            "Communicate daily updates via Slack or Stand-ups.",
+            "Document your code and API endpoints for teammates."
         ]
     },
-    "solar": {
-        title: "Solar Energy Monitor",
-        videoUrl: "https://www.youtube.com/embed/3eRjRz1aMvM", // Example Solar Project video
+    "pitch": {
+        title: "The Art of the Pitch",
+        videoUrl: "https://www.youtube.com/embed/7u0cKqRPYhY",
         suggestions: [
-            "Measure voltage and current using ACS712 sensors.",
-            "Calculate power efficiency in real-time.",
-            "Display data on an LCD 16x2 or OLED screen.",
-            "Log historical data to an SD card for analysis."
+            "Start with the problem statement, then your solution.",
+            "Keep your demo concise and focused on the 'Wow' factor.",
+            "Highlight the technologies used and why you chose them.",
+            "Practice your delivery to stay within time limits."
         ]
     }
 };
