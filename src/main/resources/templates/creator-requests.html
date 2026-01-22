@@ -1,54 +1,138 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Team Requests</title>
-    <link rel="stylesheet" href="/css/admin.css">
+    <meta charset="UTF-8">
+    <title>Team Requests | IdeaSync</title>
+    <link rel="stylesheet" href="/css/creator-dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .requests-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+        .request-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+            box-shadow: var(--card-shadow);
+            display: flex;
+            flex-direction: column;
+        }
+        .request-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        .explorer-avatar {
+            width: 40px;
+            height: 40px;
+            background: #e0e7ff;
+            color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+        .explorer-info h4 { font-size: 1rem; margin: 0; color: var(--text-dark); }
+        .explorer-info span { font-size: 0.8rem; color: var(--text-gray); }
+
+        .request-body { flex: 1; margin-bottom: 1.5rem; }
+        .project-tag {
+            display: inline-block;
+            background: var(--bg-light);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        .message-box {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+            line-height: 1.5;
+            background: #f8fafc;
+            padding: 0.75rem;
+            border-radius: 8px;
+            border: 1px solid #f1f5f9;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 0.75rem;
+        }
+        .btn-accept, .btn-reject {
+            flex: 1;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: opacity 0.2s;
+        }
+        .btn-accept { background: var(--success); color: white; }
+        .btn-reject { background: #fee2e2; color: var(--danger); }
+        .btn-accept:hover, .btn-reject:hover { opacity: 0.9; }
+    </style>
 </head>
 <body>
 
-<div class="admin-layout">
+<div class="layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <h2 class="brand">IdeaSync</h2>
+        <nav>
+            <a href="/creator/dashboard">Dashboard</a>
+            <a href="/creator/projects">My Projects</a>
+            <a href="/creator/create-project">Create Project</a>
+            <a href="/creator/requests" class="active">Team Requests</a>
+            <a class="logout" href="/logout">Logout</a>
+        </nav>
+    </aside>
 
-    <div class="sidebar">
-        <h2>IdeaSync</h2>
-        <a href="/creator/dashboard">Dashboard</a>
-        <a href="/creator/projects">My Projects</a>
-        <a href="/creator/requests" class="active">Team Requests</a>
-        <a href="/logout" class="logout-btn">Logout</a>
-    </div>
+    <main class="main">
+        <header class="header">
+            <h1>Team Requests</h1>
+            <p>Manage applications from explorers who want to join your team.</p>
+        </header>
 
-    <div class="main-content">
-        <h1>Team Join Requests</h1>
+        <div class="requests-grid">
+            <!-- Empty State -->
+            <div th:if="${#lists.isEmpty(requests)}" style="grid-column: 1/-1; text-align: center; color: var(--text-gray); padding: 3rem;">
+                <h3>No pending requests</h3>
+                <p>When explorers apply to your projects, they will appear here.</p>
+            </div>
 
-        <table>
-            <thead>
-                <tr>
-                    <th>Explorer Name</th>
-                    <th>Project</th>
-                    <th>Message</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
+            <!-- Request Cards -->
+            <div class="request-card" th:each="req : ${requests}">
+                <div class="request-header">
+                    <div style="display: flex; gap: 0.75rem; align-items: center;">
+                        <div class="explorer-avatar" th:text="${#strings.substring(req.explorerName, 0, 1)}">A</div>
+                        <div class="explorer-info">
+                            <h4 th:text="${req.explorerName}">Alex Chen</h4>
+                            <span th:text="${req.role}">Frontend Dev</span>
+                        </div>
+                    </div>
+                </div>
 
-<tr th:if="${#lists.isEmpty(requests)}">
-    <td colspan="4" style="text-align:center;">No team requests yet</td>
-</tr>
+                <div class="request-body">
+                    <div class="project-tag" th:text="${'Project: ' + req.projectTitle}">Project: AI Bot</div>
+                    <p class="message-box" th:text="${req.message}">
+                        "I have 3 years of experience..."
+                    </p>
+                </div>
 
-<tr th:each="req : ${requests}">
-    <td th:text="${req.explorerName}"></td>
-    <td th:text="${req.projectTitle}"></td>
-    <td th:text="${req.message}"></td>
-    <td>
-        <button class="btn-approve">Approve</button>
-        <button class="btn-reject">Reject</button>
-    </td>
-</tr>
-
-</tbody>
-
-        </table>
-
-    </div>
+                <div class="action-buttons">
+                    <button class="btn-accept" onclick="this.parentElement.parentElement.style.display='none'">Accept</button>
+                    <button class="btn-reject" onclick="this.parentElement.parentElement.style.display='none'">Reject</button>
+                </div>
+            </div>
+        </div>
+    </main>
 </div>
 
 </body>

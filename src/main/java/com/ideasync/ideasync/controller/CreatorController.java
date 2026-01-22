@@ -39,11 +39,11 @@ public class CreatorController {
     @GetMapping("/creator/dashboard")
     public String creatorDashboard(Model model) {
 
-        // Dashboard stats (0 for now – DB later)
-        model.addAttribute("totalProjects", 0);
-        model.addAttribute("openProjects", 0);
-        model.addAttribute("closedProjects", 0);
-        model.addAttribute("teamRequests", 0);
+        // Dashboard stats (Mocked for Demo)
+        model.addAttribute("totalProjects", 2);
+        model.addAttribute("openProjects", 1);
+        model.addAttribute("closedProjects", 1);
+        model.addAttribute("teamRequests", 3);
 
         // Default suggestions → TECH
         model.addAttribute("suggestions", suggestionService.technical());
@@ -131,7 +131,32 @@ public class CreatorController {
     // =========================
     @GetMapping("/creator/requests")
     public String teamRequests(Model model) {
-        model.addAttribute("requests", List.of()); // empty for now
+        List<TeamRequestDTO> mockRequests = List.of(
+            new TeamRequestDTO("Alex Chen", "AI Health Assistant", "I have 3 years of experience with Python and ML. Would love to help!", "Frontend Dev"),
+            new TeamRequestDTO("Sarah Jones", "DeFi Exchange", "I'm a Solidity developer looking for a side project.", "Blockchain Dev"),
+            new TeamRequestDTO("Mike Ross", "AI Health Assistant", "Great idea! I can handle the React frontend.", "Full Stack")
+        );
+        model.addAttribute("requests", mockRequests);
         return "creator-requests";
+    }
+
+    // DTO for Mock Data
+    public static class TeamRequestDTO {
+        private String explorerName;
+        private String projectTitle;
+        private String message;
+        private String role;
+
+        public TeamRequestDTO(String explorerName, String projectTitle, String message, String role) {
+            this.explorerName = explorerName;
+            this.projectTitle = projectTitle;
+            this.message = message;
+            this.role = role;
+        }
+
+        public String getExplorerName() { return explorerName; }
+        public String getProjectTitle() { return projectTitle; }
+        public String getMessage() { return message; }
+        public String getRole() { return role; }
     }
 }

@@ -1,3 +1,10 @@
+// Main featured project (Hero)
+const featuredProject = {
+    title: "EcoSmart City Grid",
+    description: "A city-wide network of IoT sensors optimizing energy consumption and traffic flow using real-time AI analytics.",
+    tags: "AI • IoT • Urban Planning"
+};
+
 // Data for the 3 main project cards
 const mainProjectData = {
     "ai": {
@@ -31,18 +38,26 @@ function openProjectModal(type) {
     const data = mainProjectData[type];
     if (!data) return;
 
+    // Use featured data if type is 'featured'
+    const projectData = (type === 'featured') ? featuredProject : data;
+
+    // For featured, we might mock some extra details since they aren't in the object above
+    if(type === 'featured') {
+        projectData.techStack = ["Python", "AWS", "LoRaWAN"];
+    }
+
     const modal = document.getElementById('projectModal');
     const title = document.getElementById('projectModalTitle');
     const desc = document.getElementById('projectModalDesc');
     const techContainer = document.getElementById('projectModalTech');
     const joinBtn = document.getElementById('modalJoinBtn');
 
-    title.textContent = data.title;
-    desc.textContent = data.description;
+    title.textContent = projectData.title;
+    desc.textContent = projectData.description;
 
     // Clear and populate tech stack
     techContainer.innerHTML = '';
-    data.techStack.forEach(tech => {
+    projectData.techStack.forEach(tech => {
         const badge = document.createElement('span');
         badge.className = 'tech-badge';
         badge.textContent = tech;
@@ -63,8 +78,6 @@ function requestJoin() {
     joinBtn.textContent = "Request Sent ✓";
     joinBtn.classList.add('requested');
     joinBtn.disabled = true;
-
-    // In a real app, this would send an API request
     console.log(`Join requested for ${currentModalType}`);
 }
 
@@ -96,7 +109,6 @@ function selectCategory(category) {
     projects.forEach(project => {
         const card = document.createElement('div');
         card.className = 'project-card';
-        // Random gradient for thumb
         const hue = Math.floor(Math.random() * 360);
         card.innerHTML = `
             <div class="project-thumb" style="background: hsl(${hue}, 70%, 80%)"></div>
@@ -138,7 +150,31 @@ const generateProjectData = (category) => {
     return projects;
 };
 
-// Close modals when clicking outside
+// Filter Logic for Main Page
+function filterMain(category, el) {
+    // Visual toggle
+    document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+    el.classList.add('active');
+
+    const grid = document.querySelector('.suggestions-grid');
+    const cards = grid.querySelectorAll('.suggestion-card');
+
+    if (category === 'all') {
+        cards.forEach(card => card.style.display = 'flex');
+    } else {
+        cards.forEach(card => {
+            // Check if card has the class corresponding to category
+            // e.g. card-image ai, card-image fintech
+            const imgDiv = card.querySelector('.card-image');
+            if (imgDiv.classList.contains(category)) {
+                card.style.display = 'flex';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    }
+}
+
 window.onclick = function(event) {
     if (event.target.classList.contains('modal-overlay')) {
         event.target.style.display = "none";

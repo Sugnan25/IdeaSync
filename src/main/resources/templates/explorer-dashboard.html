@@ -15,16 +15,41 @@
         <nav>
             <a href="/explorer/dashboard" class="active">Dashboard</a>
             <a href="/explorer/projects">Explore Projects</a>
-            <a href="/explorer/applications">My Applications</a> <!-- Placeholder link -->
+            <a href="/explorer/applications">My Applications</a>
             <a class="logout" href="/logout">Logout</a>
         </nav>
     </aside>
 
     <main class="main">
         <header class="header">
-            <h1>Welcome, Explorer!</h1>
-            <p>Discover innovative projects and join a team.</p>
+            <div class="header-text">
+                <h1>Welcome, Explorer!</h1>
+                <p>Discover innovative projects and join a team.</p>
+            </div>
+            <div class="search-container">
+                <span class="search-icon">🔍</span>
+                <input type="text" class="search-input" placeholder="Search projects...">
+            </div>
         </header>
+
+        <!-- Featured Banner -->
+        <div class="hero-banner">
+            <div class="hero-info">
+                <span class="hero-tag">Featured Project</span>
+                <h2>EcoSmart City Grid</h2>
+                <p>A city-wide network of IoT sensors optimizing energy consumption and traffic flow using real-time AI analytics.</p>
+                <button class="hero-btn" onclick="openProjectModal('featured')">Learn More</button>
+            </div>
+            <div class="hero-image-dec"></div>
+        </div>
+
+        <!-- Filters -->
+        <div class="filters-bar">
+            <div class="filter-chip active" onclick="filterMain('all', this)">All Projects</div>
+            <div class="filter-chip" onclick="filterMain('ai', this)">Artificial Intelligence</div>
+            <div class="filter-chip" onclick="filterMain('fintech', this)">FinTech & Blockchain</div>
+            <div class="filter-chip" onclick="filterMain('sustainability', this)">Sustainability</div>
+        </div>
 
         <!-- Suggestions Section -->
         <section class="suggestions-section">

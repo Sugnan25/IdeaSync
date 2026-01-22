@@ -6,6 +6,87 @@
     <!-- Using the new light theme CSS -->
     <link rel="stylesheet" href="/css/creator-dashboard.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Extra styles for the new layout overrides */
+        .hero-section {
+            background: linear-gradient(135deg, #6366f1, #4f46e5);
+            border-radius: 1rem;
+            padding: 2rem;
+            color: white;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.2);
+        }
+        .hero-content h2 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        .hero-content p { font-size: 1.1rem; opacity: 0.9; max-width: 80%; }
+        .hero-icon {
+            position: absolute;
+            right: 20px;
+            bottom: -10px;
+            font-size: 8rem;
+            opacity: 0.1;
+            transform: rotate(-15deg);
+        }
+
+        .toolkit-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .toolkit-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border: 1px solid var(--border);
+            transition: transform 0.2s;
+            cursor: pointer;
+        }
+        .toolkit-card:hover { transform: translateY(-3px); border-color: var(--primary); }
+        .toolkit-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            flex-shrink: 0;
+        }
+        .toolkit-info h4 { font-size: 1rem; margin-bottom: 0.25rem; color: var(--text-dark); }
+        .toolkit-info p { font-size: 0.85rem; color: var(--text-gray); }
+
+        .trending-section { margin-bottom: 3rem; }
+        .chips-container {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .category-chip {
+            background: white;
+            border: 1px solid var(--border);
+            padding: 0.75rem 1.5rem;
+            border-radius: 2rem;
+            font-weight: 500;
+            color: var(--text-gray);
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .category-chip:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            background: #e0e7ff;
+        }
+    </style>
 </head>
 <body>
 
@@ -24,48 +105,64 @@
 
     <main class="main">
         <header class="header">
-            <h1>Welcome back, Creator!</h1>
-            <p>Explore new ideas and manage your workspace.</p>
+            <h1>Creator Hub</h1>
+            <p>Manage your projects and find inspiration.</p>
         </header>
 
-        <!-- Suggestions Section (Redesigned) -->
+        <!-- Hero: Idea of the Day -->
+        <div class="hero-section">
+            <div class="hero-content">
+                <h2>💡 Idea of the Day</h2>
+                <p id="ideaText">Loading inspiration...</p>
+            </div>
+            <div class="hero-icon">✨</div>
+        </div>
+
+        <!-- Toolkit Section (Horizontal Cards) -->
         <section class="suggestions-section">
             <div class="section-header">
                 <h2>Creator's Toolkit</h2>
-                <!-- Updated See More with interaction -->
-                <span class="view-all" onclick="openSelectionModal()">See more</span>
             </div>
-
-            <div class="suggestions-grid">
-                <div class="suggestion-card">
-                    <div class="card-image mvp"></div>
-                    <div class="card-content">
+            <div class="toolkit-grid">
+                <!-- MVP -->
+                <div class="toolkit-card" onclick="openMainModal('mvp')">
+                    <div class="toolkit-icon" style="background: linear-gradient(135deg, #4f46e5, #9333ea);">🚀</div>
+                    <div class="toolkit-info">
                         <h4>From Idea to MVP</h4>
-                        <p>Learn how to turn your concept into a working Minimum Viable Product quickly and effectively.</p>
-                        <!-- Trigger Modal JS -->
-                        <button class="btn-suggest" onclick="openMainModal('mvp')">Watch Guide</button>
+                        <p>Launch your first version.</p>
                     </div>
                 </div>
+                <!-- Collab -->
+                <div class="toolkit-card" onclick="openMainModal('collaboration')">
+                    <div class="toolkit-icon" style="background: linear-gradient(135deg, #059669, #10b981);">🤝</div>
+                    <div class="toolkit-info">
+                        <h4>Team Collaboration</h4>
+                        <p>Master Git & Management.</p>
+                    </div>
+                </div>
+                <!-- Pitch -->
+                <div class="toolkit-card" onclick="openMainModal('pitch')">
+                    <div class="toolkit-icon" style="background: linear-gradient(135deg, #ea580c, #f59e0b);">🎤</div>
+                    <div class="toolkit-info">
+                        <h4>The Perfect Pitch</h4>
+                        <p>Win over investors.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-                <div class="suggestion-card">
-                    <div class="card-image collaboration"></div>
-                    <div class="card-content">
-                        <h4>Mastering Team Collaboration</h4>
-                        <p>Best practices for using Git, code reviews, and managing remote teams for your projects.</p>
-                        <!-- Trigger Modal JS -->
-                        <button class="btn-suggest" onclick="openMainModal('collaboration')">Watch Guide</button>
-                    </div>
-                </div>
-
-                <div class="suggestion-card">
-                    <div class="card-image pitch"></div>
-                    <div class="card-content">
-                        <h4>The Art of the Pitch</h4>
-                        <p>How to present your project, create a compelling demo, and attract team members or investors.</p>
-                        <!-- Trigger Modal JS -->
-                        <button class="btn-suggest" onclick="openMainModal('pitch')">Watch Guide</button>
-                    </div>
-                </div>
+        <!-- Trending Categories -->
+        <section class="trending-section">
+            <div class="section-header">
+                <h2>Explore Resources</h2>
+                <span class="view-all" onclick="openSelectionModal()">View All Categories</span>
+            </div>
+            <div class="chips-container">
+                <div class="category-chip" onclick="selectCategory('technical')">💻 Technical</div>
+                <div class="category-chip" onclick="selectCategory('business')">📈 Business</div>
+                <div class="category-chip" onclick="selectCategory('creative')">🎨 Creative</div>
+                <div class="category-chip" onclick="selectCategory('iot')">🤖 IoT & Hardware</div>
+                <div class="category-chip" onclick="selectCategory('non-technical')">📚 Soft Skills</div>
             </div>
         </section>
 
@@ -133,9 +230,12 @@
             <button class="close-btn" onclick="closeModal('selectionModal')">&times;</button>
         </div>
         <p>Select a category to view curated project ideas and video tutorials.</p>
-        <div class="selection-buttons">
+        <div class="selection-buttons" style="flex-wrap: wrap;">
             <button class="btn-select" onclick="selectCategory('technical')">Technical</button>
-            <button class="btn-select" onclick="selectCategory('non-technical')">Non-Technical</button>
+            <button class="btn-select" onclick="selectCategory('business')">Business</button>
+            <button class="btn-select" onclick="selectCategory('creative')">Creative</button>
+            <button class="btn-select" onclick="selectCategory('iot')">IoT</button>
+            <button class="btn-select" onclick="selectCategory('non-technical')">Soft Skills</button>
         </div>
     </div>
 </div>
